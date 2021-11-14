@@ -28,69 +28,131 @@
 // Done:
 //     -
 
-const list = {
-    "create a task": "In Progress",
-    "make a bed": "Done",
-    "write a post": "To Do",
+
+const list = [
+    {
+        id: 1,
+        name: 'create a post',
+        status: 'TODO',
+        priority: 'low',
+    },
+    {
+        id: 2,
+        name: 'test',
+        status: 'Done',
+        priority: 'high'
+    }
+]
+
+function changeStatus(name, status) {
+    let newTask = list.find(item => item.name === name);
+    newTask.status = status;
 }
 
-function changeStatus(task, status) {
-    list[task] = status;
+changeStatus('test', 'In progress');
+
+function addTask(name, status, priority) {
+    let id = list.length + 1;
+    list.push({ 'id': id, 'name': name, 'status' : status, 'priority' : priority});
 }
 
-changeStatus("write a post", "Done");
+addTask('write code', 'TODO', 'high');
+addTask('read conspect', 'In Progress', 'mid');
 
-function addTask(task) {
-    list[task] = 'To Do';
+
+
+function deleteTask(name) {
+    let deleteTask = list.findIndex(item => item.name === name);
+    list.splice(deleteTask, 1);
 }
+// deleteTask('test');
 
-addTask('have a walk')
+// console.log(list);
 
-function deleteTask(task) {
- delete list[task];
-}
+function showBuy(val){
+    if(val === 'priority'){
+        let hasHighPriority = false;
+        let hasMidPriority = false;
+        let hasLowPriority = false;
 
-deleteTask('have a walk')
+        console.log('high');
+        for (let i=0; i<list.length; i++){
+            if( list[i].priority === 'high'){
+                console.log(`    ${list[i].name}`);
+                hasHighPriority = true;
+            }
 
+        }
+        if (!hasHighPriority){
+            console.log('   -')
+        }
+        console.log('mid');
+        for (let i=0; i<list.length; i++){
+            if( list[i].priority === 'mid'){
+                console.log(`    ${list[i].name}`);
+                hasMidPriority = true;
+            }
+        }
+        if (!hasMidPriority){
+            console.log('   -')
+        }
+        console.log('low');
+        for (let i=0; i<list.length; i++){
+            if( list[i].priority === 'low'){
+                console.log(`    ${list[i].name}`);
+                hasLowPriority = true;
+            }
 
-function showList() {
-    console.log('Todo:');
-    let countTodo = false;
-    let countInProgress = false;
-    let countDone = false;
-    for (let key in list){
-        if ( list[key] === 'Todo' ){
-            console.log( key );
-            countTodo = true;
+        }
+        if (!hasLowPriority){
+            console.log('   -')
         }
     }
-    if (!countTodo){
-        console.log('-');
-    }
-    console.log('In progress:');
-    for (let key in list){
-        if ( list[key] === 'In Progress' ){
-            console.log( key );
-            countInProgress = true;
+    if(val === 'status'){
+        let hasInProgressStatus = false;
+        let hasTodoStatus = false;
+        let hasDoneStatus = false;
+
+        console.log('ToDo');
+        for (let i=0; i<list.length; i++){
+            if( list[i].status === 'TODO'){
+                console.log(`    ${list[i].name}`);
+                hasTodoStatus = true;
+            }
+
+        }
+        if (!hasTodoStatus){
+            console.log('   -')
+        }
+        console.log('In Progress');
+        for (let i=0; i<list.length; i++){
+            if( list[i].status === 'In Progress'){
+                console.log(`    ${list[i].name}`);
+                hasInProgressStatus = true;
+            }
+        }
+        if (!hasInProgressStatus){
+            console.log('   -')
+        }
+        console.log('Done');
+        for (let i=0; i<list.length; i++){
+            if( list[i].status === 'Done'){
+                console.log(`    ${list[i].name}`);
+                hasDoneStatus = true;
+            }
+
+        }
+        if (!hasDoneStatus){
+            console.log('   -')
         }
     }
-    if (!countInProgress){
-        console.log('-');
-    }
-    console.log('Done:');
-    for (let key in list){
-        if ( list[key] === 'Done' ){
-            console.log( key );
-            countDone = true;
-        }
-    }
-    if (!countDone){
-        console.log('-');
-    }
+
 
 }
 
-showList();
+
+
+showBuy('status');
 
 
 
