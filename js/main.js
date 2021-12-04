@@ -1,8 +1,4 @@
-const ADD = {
-    BTN : document.getElementsByClassName('btnAdd'),
-    INPUT : document.getElementsByClassName('tasks__input'),
-}
-const tasksBlock = document.getElementsByClassName('tasks__block');
+import {ADD, tasksBlock} from "./view.js";
 
 for (let i = 0; i < ADD.BTN.length; i++){
     ADD.BTN[i].addEventListener('click', function () {
