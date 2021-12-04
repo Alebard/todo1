@@ -1,10 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-$END$
+<div class="todo">
+    <div class="todo__display">
+        <div class="tasks">
+                <div class="tasks__block_title">
+                    High
+                </div>
+                <form onsubmit="return false" class="tasks__form">
+                    <input type="text" class="tasks__input" placeholder="Добавить важных дел">
+                    <button class="btnAdd">
+                        <img src="icons/plus.png" alt="plus">
+                    </button>
+                </form>
+            <div class="tasks__block" >
+            </div>
+            <div class="tasks__done"></div>
+                <div class="tasks__block_title" id="high-tasks-done">
+                    Low
+                </div><form onsubmit="return false" class="tasks__form">
+            <input type="text" class="tasks__input" placeholder="Добавить">
+            <button class="btnAdd">
+                <img src="icons/plus.png" alt="plus">
+            </button>
+        </form>
+            <div class="tasks__block" >
+            </div>
+            <div class="tasks__done" id="low-tasks-done"></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/main.js"></script>
 </body>
 </html>

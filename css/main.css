@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    background-color: #e5e5e5;
+    font-family: Roboto,sans-serif;
+
+}
+
+.todo__display {
+    width: 476px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 30px;
+}
+
+.tasks {
+padding: 13px 8px;
+}
+.tasks__block{
+    margin-top: 12px;
+}
+
+.tasks__block_title{
+    font-size: 18px;
+    text-align: center;
+    margin: 12px 0;
+}
+
+.tasks__input{
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 12px;
+    border: 1px solid #989898;
+    border-radius: 6px;
+}
+
+.task{
+    border: 1px solid #989898;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 12px 45px;
+    position: relative;
+    margin-top: 8px;
+}
+
+.task__description{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 19px;
+    color: #202020;
+}
+
+.checked{
+    background-color: #f4f4f4;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+.checkbox__circle{
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    position: absolute;
+    top: 11px;
+    left: 12px;
+    border: 1px solid #998899;
+}
+
+.checked .checkbox__circle::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: #C4C4C4;
+    position: absolute;
+    border-radius: 50%;
+    top: calc(50% - 7.5px);
+    left: calc(50% - 7.5px);
+}
+
+.task__delete{
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    font-size: 15px;
+    color: #998899;
+    line-height: 20px;
+}
+
+.task__delete img{
+    width: 15px;
+    height: 15px;
+}
+
+.btnAdd{
+    background: none;
+    border: none;
+    position: absolute;
+    top: 13px;
+    right: 13px;
+
+}
+
+.tasks__form{
+    position: relative;
+}
+
+.btnAdd img{
+    width: 15px;
+    height: 15px;
+}

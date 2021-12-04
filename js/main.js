@@ -1,86 +1,50 @@
-const list = [
-    {
-        id: 1,
-        name: 'create a post',
-        status: 'TODO',
-        priority: 'low',
-    },
-    {
-        id: 2,
-        name: 'test',
-        status: 'Done',
-        priority: 'high'
-    }
-]
+const ADD = {
+    BTN : document.getElementsByClassName('btnAdd'),
+    INPUT : document.getElementsByClassName('tasks__input'),
+}
+const tasksBlock = document.getElementsByClassName('tasks__block');
 
-const filterByStatus = ['TODO', 'Done', 'In Progress'];
-const filterByPriority = ['high', 'mid', 'low'];
+for (let i = 0; i < ADD.BTN.length; i++){
+    ADD.BTN[i].addEventListener('click', function () {
+        let input = ADD.INPUT[i]
+        let taskName = input.value;
+        if (!taskName.trim()){
+            input.value = ''
+            return false;
+        }
+        let newTask = document.createElement('div');
+        newTask.className = `task`;
+        newTask.innerHTML = `
+                    <label>
+                    <div class="checkbox__circle">
+                    </div>
+                        <input class="checkbox__input" type="checkbox">
+                        <span class="task__description"> ${taskName} </span>
+                    </label>
+                    <div class="task__delete">
+                        <img src="icons/delete.png" alt="">
+                    </div>`
+        tasksBlock[i].append(newTask);
+        input.value = ''
+        newTask.querySelector('.task__delete').addEventListener('click', deleteTask);
+        newTask.querySelector('.checkbox__input').addEventListener('click', taskChangeStatus);
+    })
 
-const id = 2;
-
-function changeStatus(name, status) {
-    let changesTask = list.find(item => item.name === name);
-    changesTask.status = status;
 }
 
-changeStatus('test', 'In Progress');
-
-function addTask(name, status, priority) {
-    let taskId = id + 1;
-    list.push({'id': taskId, 'name': name, 'status': status, 'priority': priority});
+function deleteTask() {
+    let task = this.parentElement;
+    task.remove();
 }
 
-addTask('write code', 'TODO', 'high');
-
-// addTask('read conspect', 'In Progress', 'mid');
-
-
-function deleteTask(name) {
-    let deleteTask = list.findIndex(item => item.name === name);
-    list.splice(deleteTask, 1);
-}
-
-// deleteTask('test');
-
-function showBy(targetGroup) {
-    const isStatus = (targetGroup === 'status');
-    const isPriority = (targetGroup === 'priority');
-    let groupArr = [];
-
-    if (isStatus){
-        groupArr = filterByStatus;
-        showList(targetGroup, groupArr);
-    } else if (isPriority){
-        groupArr = filterByPriority;
-        showList(targetGroup, groupArr);
-    } else{
-        console.log('unknown group')
+function taskChangeStatus () {
+    let task = this.parentElement.parentElement;
+    task.classList.toggle('checked');
+    if (task.classList.contains('checked')){
+        let transferTo = this.parentElement.parentElement.parentElement.nextElementSibling;
+        transferTo.prepend(task);
+    } else {
+        let transferTo = this.parentElement.parentElement.parentElement.previousElementSibling;
+        transferTo.prepend(task);
     }
 }
-
-function showList(targetGroup, groupArr) {
-
-    groupArr.forEach(function(item) {
-        console.log(item);
-        let tasks = '   ';
-        for (let task of list){
-            let isValidTaskValue = (task[targetGroup] === item);
-            if (isValidTaskValue){
-                tasks += `"${task.name}", `;
-            }
-        }
-
-        let NoTasks = (tasks === '   ');
-        if (NoTasks){
-            tasks = '-';
-        }
-
-        console.log(tasks);
-
-    });
-}
-
-showBy('priority');
-
-
-
