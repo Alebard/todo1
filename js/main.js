@@ -70,7 +70,7 @@ function showList(targetGroup, groupArr) {
             }
         }
 
-        let NoTasks = tasks === '   ';
+        let NoTasks = (tasks === '   ');
         if (NoTasks){
             tasks = '-';
         }
