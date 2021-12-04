@@ -4,14 +4,14 @@ for (let i = 0; i < ADD.BTN.length; i++){
     ADD.BTN[i].addEventListener('click', function () {
         let input = ADD.INPUT[i]
         let taskName = input.value;
-        if (!taskName.trim()){
+        let noTaskName = !taskName.trim();
+        if (noTaskName){
             input.value = ''
             return false;
         }
         let newTask = document.createElement('div');
         newTask.className = `task`;
-        newTask.innerHTML = `
-                    <label>
+        newTask.innerHTML = ` <label>
                     <div class="checkbox__circle">
                     </div>
                         <input class="checkbox__input" type="checkbox">
@@ -36,7 +36,8 @@ function deleteTask() {
 function taskChangeStatus () {
     let task = this.parentElement.parentElement;
     task.classList.toggle('checked');
-    if (task.classList.contains('checked')){
+    let isDoneTask = task.classList.contains('checked');
+    if (isDoneTask){
         let transferTo = this.parentElement.parentElement.parentElement.nextElementSibling;
         transferTo.prepend(task);
     } else {
